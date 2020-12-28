@@ -1,0 +1,29 @@
+$balloonColor: #00f;
+
+/* 塗りつぶし吹き出し */
+.balloon {
+    position: relative;
+    display: flex;
+    color: $balloonColor; // 吹き出しの背景色と同じ色
+    justify-content: center;
+}
+.balloon::before {
+    position: absolute;
+    content: "";
+    width: 1.5em;
+    height: 1.5em;
+    background: currentColor; // .baloon の「文字色」を継承
+    right: 0;
+    bottom: -.75em;
+    left: 0;
+    margin: auto;
+    transform: rotate(45deg);
+}
+
+.balloon__contents {
+    padding: 1em;
+    background: $balloonColor; // 吹き出しの背景色
+    color: #fff;
+    border-radius: 1em;
+}
+
