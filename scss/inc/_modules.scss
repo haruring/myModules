@@ -1,81 +1,101 @@
 $balloonMainColor: #00f; //balloonのメインカラー
 $balloonSubColor: #fff; //balloonのサブカラー
 
-/* 塗りつぶし吹き出し */
-.balloon {
-    position: relative;
-    display: flex;
-    color: $balloonMainColor; // 吹き出しの背景色と同じ色
-    justify-content: center;
-    padding-bottom: 1em;
-
-    &::before {
-        position: absolute;
-        content: "";
-        width: 1.5em;
-        height: 1.5em;
-        background: currentColor; // .baloon の「文字色」を継承
+@mixin balloonOTailPosBefore($position, $size,$borderWidth) {
+    @if $position==top {
+        top: calc(#{$size} / 4 + #{$borderWidth});
         right: 0;
-        bottom: .25em;
         left: 0;
-        margin: auto;
-        transform: rotate(45deg);
     }
 
-    .balloon__contents {
-        padding: 1em;
-        background: $balloonMainColor; // 吹き出しの背景色
-        color: #fff;
-        border-radius: 1em;
+    @else if $position==right {
+        top: 0;
+        right: calc(#{$size} / 4 + #{$borderWidth});
+        bottom: 0;
+    }
+
+    @else if $position==bottom {
+        right: 0;
+        bottom: calc(#{$size} / 4 + #{$borderWidth});
+        left: 0;
+    }
+
+    @else if $position==left {
+        top: 0;
+        bottom: 0;
+        left: calc(#{$size} / 4 + #{$borderWidth});
     }
 }
 
-@mixin balloonOTailPosBefore($position,$size) {
-        @if $position == top {
-        top: $size / 4;
+@mixin balloonOTailPosAfter($position, $size, $borderWidth) {
+    @if $position==top {
+        //top: calc((#{$size}/4) + #{$borderWidth});
         right: 0;
+        bottom: calc(100% + #{$borderWidth} * 2 - #{$size});
         left: 0;
-        } @else if $position == right {
-            top: 0;
-        right: $size / 4;
-        bottom: 0;
-        } @else if $position == bottom {
-            right: 0;
-        bottom: $size / 4;
-        left: 0;
-        } @else if $position == left {
+    }
+
+    @else if $position==right {
         top: 0;
+        //right: calc((#{$size}/4) + #{$borderWidth});
         bottom: 0;
-        left: $size / 4;
+        left: calc(100% + #{$borderWidth} * 2 - #{$size});
+    }
+
+    @else if $position==bottom {
+        top: calc(100% + #{$borderWidth} * 2 - #{$size});
+        right: 0;
+        //bottom: calc((#{$size}/4) + #{$borderWidth});
+        left: 0;
+    }
+
+    @else if $position==left {
+        top: 0;
+        right: calc(100% + #{$borderWidth} * 2 - #{$size});
+        bottom: 0;
+        //left: calc((#{$size}/4) + #{$borderWidth});
+    }
+}
+
+@mixin balloon($base: $ballonMainColor, $text:$balloonSubColor, $size: 1em, $position: bottom) {
+
+    /* 塗りつぶし吹き出し */
+    .balloon.tail--#{$position} {
+        position: relative;
+        display: flex;
+        color: $base; // 吹き出しの背景色と同じ色
+        justify-content: center;
+        padding-#{$position}: 1em;
+
+        &::before {
+            position: absolute;
+            content: "";
+            width: $size * 1.5;
+            height: $size * 1.5;
+            background: currentColor; // .baloon の「文字色」を継承
+            margin: auto;
+            transform: rotate(45deg);
+            @include balloonOTailPosBefore($position, $size,0);
+        }
+
+        .balloon__contents {
+            padding: 1em;
+            background: $base; // 吹き出しの背景色
+            color: $text;
+            border-radius: 1em;
         }
     }
-@mixin balloonOTailPosAfter($position,$size,$borderWidth) {
-        @if $position == top {
-        top: calc( (#{$size}/4) + #{$borderWidth});
-        right: 0;
-        left: 0;
-        } @else if $position == right {
-            top: 0;
-        right: calc( (#{$size}/4) + #{$borderWidth});
-        bottom: 0;
-        } @else if $position == bottom {
-            right: 0;
-        bottom: calc( (#{$size}/4) + #{$borderWidth});
-        left: 0;
-        } @else if $position == left {
-        top: 0;
-        bottom: 0;
-        left: calc( (#{$size}/4) + #{$borderWidth});
-        }
-    }
-@mixin baloonOutline($base: $balloonSubColor, $outline: $balloonMainColor, $borderWidth: 2px,$size: 1em,$position: bottom) {
+}
+
+@mixin baloonOutline($base: $balloonSubColor, $outline: $balloonMainColor, $borderWidth: 2px, $size: 1em) {
+
     /* アウトライン吹き出し */
-    .balloon-outline.tail--#{$position} {
+    .balloon-outline {
         position: relative;
         display: flex;
         color: $outline;
         justify-content: center;
-        padding-#{$position}: $size;
+
         &::before {
             position: absolute;
             content: "";
@@ -84,30 +104,109 @@ $balloonSubColor: #fff; //balloonのサブカラー
             background: currentColor; // .baloon の「文字色」を継承
             margin: auto;
             transform: rotate(45deg);
-            z-index: 0;
-            @include balloonOTailPosBefore($position,$size);
+            z-index: 1;
         }
 
-        &::after {
-            position: absolute;
-            content: "";
-            width: ($size * 1.5);
-            height: ($size * 1.5);
-            background: $base; // .baloon の「文字色」を継承
-            margin: auto;
-            transform: rotate(45deg);
-            z-index: 3;
-            @include balloonOTailPosAfter($position,$size,$borderWidth);
-        }
+
         .balloon__contents {
             position: relative;
-            z-index: 2;
+            z-index: 4;
             width: 100%;
             padding: 1em;
-            background: $base; // 吹き出しの背景色
-            border: $borderWidth solid $outline;
             color: $outline;
+            background: $outline; // 吹き出しのアウトラインの色
             border-radius: 1em;
+
+            &::before {
+                position: absolute;
+                display: block;
+                content: "";
+                background: $base; // 吹き出しの背景色
+                z-index: 1;
+                top: $borderWidth;
+                right: $borderWidth;
+                bottom: $borderWidth;
+                left: $borderWidth;
+                margin: auto;
+                z-index: -1;
+                border-radius: calc(1em - #{$borderWidth});
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                width: ($size * 1.5);
+                height: ($size * 1.5);
+                background: $base; // .baloon の「文字色」を継承
+                margin: auto;
+                transform: rotate(45deg);
+                z-index: -1;
+            }
+        }
+
+        &.tail--top {
+            padding-top: $size;
+
+            &::before {
+                @include balloonOTailPosBefore(top, $size,$borderWidth);
+            }
+        }
+
+        &.tail--right {
+            padding-right: $size;
+
+            &::before {
+                @include balloonOTailPosBefore(right, $size,$borderWidth);
+            }
+        }
+
+        &.tail--bottom {
+            padding-bottom: $size;
+
+            &::before {
+                @include balloonOTailPosBefore(bottom, $size,$borderWidth);
+            }
+
+        }
+
+        &.tail--left {
+            padding-left: $size;
+
+            &::before {
+                @include balloonOTailPosBefore(left, $size,$borderWidth);
+            }
+        }
+
+        &.tail--top {
+            padding-top: $size;
+
+            .balloon__contents::after {
+                @include balloonOTailPosAfter(top, $size, $borderWidth);
+            }
+        }
+
+        &.tail--right {
+            padding-right: $size;
+
+            .balloon__contents::after {
+                @include balloonOTailPosAfter(right, $size, $borderWidth);
+            }
+        }
+
+        &.tail--bottom {
+            padding-bottom: $size;
+
+            .balloon__contents::after {
+                @include balloonOTailPosAfter(bottom, $size, $borderWidth);
+            }
+        }
+
+        &.tail--left {
+            padding-left: $size;
+
+            .balloon__contents::after {
+                @include balloonOTailPosAfter(left, $size, $borderWidth);
+            }
         }
     }
 }

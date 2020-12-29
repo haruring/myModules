@@ -5,40 +5,6 @@
 }
 
 /* パーツ */
-/* 塗りつぶし吹き出し */
-.balloon {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  color: #00f;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-bottom: 1em;
-}
-
-.balloon::before {
-  position: absolute;
-  content: "";
-  width: 1.5em;
-  height: 1.5em;
-  background: currentColor;
-  right: 0;
-  bottom: .25em;
-  left: 0;
-  margin: auto;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.balloon .balloon__contents {
-  padding: 1em;
-  background: #00f;
-  color: #fff;
-  border-radius: 1em;
-}
-
 .balloon__sample {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -55,128 +21,88 @@
           flex: 0 0 20%;
 }
 
-/* アウトライン吹き出し */
-.balloon-outline.tail--top {
+/* 塗りつぶし吹き出し */
+.balloon.tail--top {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #fcc;
+  color: #000;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-top: 2em;
+  padding-top: 1em;
 }
 
-.balloon-outline.tail--top::before {
+.balloon.tail--top::before {
   position: absolute;
   content: "";
-  width: 3em;
-  height: 3em;
+  width: 1.5em;
+  height: 1.5em;
   background: currentColor;
   margin: auto;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  z-index: 0;
-  top: 0.5em;
+  top: calc(1em / 4 + 0);
   right: 0;
   left: 0;
 }
 
-.balloon-outline.tail--top::after {
-  position: absolute;
-  content: "";
-  width: 3em;
-  height: 3em;
-  background: #cfc;
-  margin: auto;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  z-index: 3;
-  top: calc( (2em/4) + 4px);
-  right: 0;
-  left: 0;
-}
-
-.balloon-outline.tail--top .balloon__contents {
-  position: relative;
-  z-index: 2;
-  width: 100%;
+.balloon.tail--top .balloon__contents {
   padding: 1em;
-  background: #cfc;
-  border: 4px solid #fcc;
-  color: #fcc;
+  background: #000;
+  color: #fff;
   border-radius: 1em;
 }
 
-/* アウトライン吹き出し */
-.balloon-outline.tail--right {
+/* 塗りつぶし吹き出し */
+.balloon.tail--right {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #fcf;
+  color: #000;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-right: 2em;
+  padding-right: 1em;
 }
 
-.balloon-outline.tail--right::before {
+.balloon.tail--right::before {
   position: absolute;
   content: "";
-  width: 3em;
-  height: 3em;
+  width: 1.5em;
+  height: 1.5em;
   background: currentColor;
   margin: auto;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  z-index: 0;
   top: 0;
-  right: 0.5em;
+  right: calc(1em / 4 + 0);
   bottom: 0;
 }
 
-.balloon-outline.tail--right::after {
-  position: absolute;
-  content: "";
-  width: 3em;
-  height: 3em;
-  background: #fcc;
-  margin: auto;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  z-index: 3;
-  top: 0;
-  right: calc( (2em/4) + 6px);
-  bottom: 0;
-}
-
-.balloon-outline.tail--right .balloon__contents {
-  position: relative;
-  z-index: 2;
-  width: 100%;
+.balloon.tail--right .balloon__contents {
   padding: 1em;
-  background: #fcc;
-  border: 6px solid #fcf;
-  color: #fcf;
+  background: #000;
+  color: #fff;
   border-radius: 1em;
 }
 
-/* アウトライン吹き出し */
-.balloon-outline.tail--bottom {
+/* 塗りつぶし吹き出し */
+.balloon.tail--bottom {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #ffc;
+  color: #000;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   padding-bottom: 1em;
 }
 
-.balloon-outline.tail--bottom::before {
+.balloon.tail--bottom::before {
   position: absolute;
   content: "";
   width: 1.5em;
@@ -185,52 +111,32 @@
   margin: auto;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  z-index: 0;
   right: 0;
-  bottom: 0.25em;
+  bottom: calc(1em / 4 + 0);
   left: 0;
 }
 
-.balloon-outline.tail--bottom::after {
-  position: absolute;
-  content: "";
-  width: 1.5em;
-  height: 1.5em;
-  background: #ccf;
-  margin: auto;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  z-index: 3;
-  right: 0;
-  bottom: calc( (1em/4) + 2px);
-  left: 0;
-}
-
-.balloon-outline.tail--bottom .balloon__contents {
-  position: relative;
-  z-index: 2;
-  width: 100%;
+.balloon.tail--bottom .balloon__contents {
   padding: 1em;
-  background: #ccf;
-  border: 2px solid #ffc;
-  color: #ffc;
+  background: #000;
+  color: #fff;
   border-radius: 1em;
 }
 
-/* アウトライン吹き出し */
-.balloon-outline.tail--left {
+/* 塗りつぶし吹き出し */
+.balloon.tail--left {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #00f;
+  color: #000;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   padding-left: 1em;
 }
 
-.balloon-outline.tail--left::before {
+.balloon.tail--left::before {
   position: absolute;
   content: "";
   width: 1.5em;
@@ -239,34 +145,192 @@
   margin: auto;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  z-index: 0;
   top: 0;
   bottom: 0;
-  left: 0.25em;
+  left: calc(1em / 4 + 0);
 }
 
-.balloon-outline.tail--left::after {
+.balloon.tail--left .balloon__contents {
+  padding: 1em;
+  background: #000;
+  color: #fff;
+  border-radius: 1em;
+}
+
+/* アウトライン吹き出し */
+.balloon-outline {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #f00;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.balloon-outline::before {
   position: absolute;
   content: "";
   width: 1.5em;
   height: 1.5em;
-  background: #f0f;
+  background: currentColor;
   margin: auto;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  z-index: 3;
-  top: 0;
-  bottom: 0;
-  left: calc( (1em/4) + 2px);
+  z-index: 1;
 }
 
-.balloon-outline.tail--left .balloon__contents {
+.balloon-outline .balloon__contents {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  padding: 1em;
+  color: #f00;
+  background: #f00;
+  border-radius: 1em;
+}
+
+.balloon-outline .balloon__contents::before {
+  position: absolute;
+  display: block;
+  content: "";
+  background: #cfc;
+  z-index: 1;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
+  margin: auto;
+  z-index: -1;
+  border-radius: calc(1em - 2px);
+}
+
+.balloon-outline .balloon__contents::after {
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  background: #cfc;
+  margin: auto;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: -1;
+}
+
+.balloon-outline.tail--top {
+  padding-top: 1em;
+}
+
+.balloon-outline.tail--top::before {
+  top: calc(1em / 4 + 2px);
+  right: 0;
+  left: 0;
+}
+
+.balloon-outline.tail--right {
+  padding-right: 1em;
+}
+
+.balloon-outline.tail--right::before {
+  top: 0;
+  right: calc(1em / 4 + 2px);
+  bottom: 0;
+}
+
+.balloon-outline.tail--bottom {
+  padding-bottom: 1em;
+}
+
+.balloon-outline.tail--bottom::before {
+  right: 0;
+  bottom: calc(1em / 4 + 2px);
+  left: 0;
+}
+
+.balloon-outline.tail--left {
+  padding-left: 1em;
+}
+
+.balloon-outline.tail--left::before {
+  top: 0;
+  bottom: 0;
+  left: calc(1em / 4 + 2px);
+}
+
+.balloon-outline.tail--top {
+  padding-top: 1em;
+}
+
+.balloon-outline.tail--top .balloon__contents::after {
+  right: 0;
+  bottom: calc(100% + 2px * 2 - 1em);
+  left: 0;
+}
+
+.balloon-outline.tail--right {
+  padding-right: 1em;
+}
+
+.balloon-outline.tail--right .balloon__contents::after {
+  top: 0;
+  bottom: 0;
+  left: calc(100% + 2px * 2 - 1em);
+}
+
+.balloon-outline.tail--bottom {
+  padding-bottom: 1em;
+}
+
+.balloon-outline.tail--bottom .balloon__contents::after {
+  top: calc(100% + 2px * 2 - 1em);
+  right: 0;
+  left: 0;
+}
+
+.balloon-outline.tail--left {
+  padding-left: 1em;
+}
+
+.balloon-outline.tail--left .balloon__contents::after {
+  top: 0;
+  right: calc(100% + 2px * 2 - 1em);
+  bottom: 0;
+}
+
+.balloon2.tail--left {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #00f;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-left: 1em;
+}
+
+.balloon2.tail--left::before {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  margin: auto;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 0.25em;
+  border-top: 1.5em solid rgba(255, 255, 255, 0);
+  border-right: 1.5em solid #f0f;
+  border-bottom: 1.5em solid rgba(255, 255, 255, 0);
+}
+
+.balloon2.tail--left .balloon__contents {
   position: relative;
   z-index: 2;
   width: 100%;
   padding: 1em;
   background: #f0f;
-  border: 2px solid #00f;
   color: #00f;
   border-radius: 1em;
 }

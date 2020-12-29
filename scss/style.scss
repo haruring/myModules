@@ -14,7 +14,47 @@
     }
 }
 
-@include baloonOutline(#cfc,#fcc,4px,2em,top);
-@include baloonOutline(#fcc,#fcf,6px,2em,right);
-@include baloonOutline(#ccf,#ffc,2px,1em,bottom);
-@include baloonOutline(#f0f,#00f,2px,1em,left);
+@include balloon(#000,#fff,1em,top);
+@include balloon(#000,#fff,1em,right);
+@include balloon(#000,#fff,1em,bottom);
+@include balloon(#000,#fff,1em,left);
+
+@include baloonOutline(#cfc,#f00,2px,1em);
+
+    .balloon2.tail--left {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        color: #00f;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        padding-left: 1em;
+      }
+      
+      .balloon2.tail--left::before {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        margin: auto;
+        z-index: 0;
+        top: 0;
+        bottom: 0;
+        left: 0.25em;
+        border-top: 1.5em solid rgba(255,255,255,0);
+        border-right: 1.5em solid #f0f;
+        border-bottom: 1.5em solid rgba(255,255,255,0);
+      }
+      
+      .balloon2.tail--left .balloon__contents {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding: 1em;
+        background: #f0f;
+        color: #00f;
+        border-radius: 1em;
+      }
+         
