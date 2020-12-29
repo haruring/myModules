@@ -1,4 +1,20 @@
 @charset "utf-8";
 
+@import "inc/base";
+
 /* パーツ */
 @import "inc/modules";
+
+.balloon__sample {
+    display: flex;
+    justify-content: center;
+    .balloon-outline {
+        margin: auto;
+        flex: 0 0 20%;
+    }
+}
+
+@include baloonOutline(#cfc,#fcc,4px,2em,top);
+@include baloonOutline(#fcc,#fcf,6px,2em,right);
+@include baloonOutline(#ccf,#ffc,2px,1em,bottom);
+@include baloonOutline(#f0f,#00f,2px,1em,left);

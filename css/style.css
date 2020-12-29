@@ -1,4 +1,9 @@
 @charset "UTF-8";
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 /* パーツ */
 /* 塗りつぶし吹き出し */
 .balloon {
@@ -10,6 +15,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding-bottom: 1em;
 }
 
 .balloon::before {
@@ -19,17 +25,249 @@
   height: 1.5em;
   background: currentColor;
   right: 0;
-  bottom: -.75em;
+  bottom: .25em;
   left: 0;
   margin: auto;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 
-.balloon__contents {
+.balloon .balloon__contents {
   padding: 1em;
   background: #00f;
   color: #fff;
+  border-radius: 1em;
+}
+
+.balloon__sample {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.balloon__sample .balloon-outline {
+  margin: auto;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 20%;
+          flex: 0 0 20%;
+}
+
+/* アウトライン吹き出し */
+.balloon-outline.tail--top {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #fcc;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 2em;
+}
+
+.balloon-outline.tail--top::before {
+  position: absolute;
+  content: "";
+  width: 3em;
+  height: 3em;
+  background: currentColor;
+  margin: auto;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: 0;
+  top: 0.5em;
+  right: 0;
+  left: 0;
+}
+
+.balloon-outline.tail--top::after {
+  position: absolute;
+  content: "";
+  width: 3em;
+  height: 3em;
+  background: #cfc;
+  margin: auto;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: 3;
+  top: calc( (2em/4) + 4px);
+  right: 0;
+  left: 0;
+}
+
+.balloon-outline.tail--top .balloon__contents {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 1em;
+  background: #cfc;
+  border: 4px solid #fcc;
+  color: #fcc;
+  border-radius: 1em;
+}
+
+/* アウトライン吹き出し */
+.balloon-outline.tail--right {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #fcf;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-right: 2em;
+}
+
+.balloon-outline.tail--right::before {
+  position: absolute;
+  content: "";
+  width: 3em;
+  height: 3em;
+  background: currentColor;
+  margin: auto;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: 0;
+  top: 0;
+  right: 0.5em;
+  bottom: 0;
+}
+
+.balloon-outline.tail--right::after {
+  position: absolute;
+  content: "";
+  width: 3em;
+  height: 3em;
+  background: #fcc;
+  margin: auto;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: 3;
+  top: 0;
+  right: calc( (2em/4) + 6px);
+  bottom: 0;
+}
+
+.balloon-outline.tail--right .balloon__contents {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 1em;
+  background: #fcc;
+  border: 6px solid #fcf;
+  color: #fcf;
+  border-radius: 1em;
+}
+
+/* アウトライン吹き出し */
+.balloon-outline.tail--bottom {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #ffc;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 1em;
+}
+
+.balloon-outline.tail--bottom::before {
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  background: currentColor;
+  margin: auto;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: 0;
+  right: 0;
+  bottom: 0.25em;
+  left: 0;
+}
+
+.balloon-outline.tail--bottom::after {
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  background: #ccf;
+  margin: auto;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: 3;
+  right: 0;
+  bottom: calc( (1em/4) + 2px);
+  left: 0;
+}
+
+.balloon-outline.tail--bottom .balloon__contents {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 1em;
+  background: #ccf;
+  border: 2px solid #ffc;
+  color: #ffc;
+  border-radius: 1em;
+}
+
+/* アウトライン吹き出し */
+.balloon-outline.tail--left {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #00f;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-left: 1em;
+}
+
+.balloon-outline.tail--left::before {
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  background: currentColor;
+  margin: auto;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 0.25em;
+}
+
+.balloon-outline.tail--left::after {
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  background: #f0f;
+  margin: auto;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: calc( (1em/4) + 2px);
+}
+
+.balloon-outline.tail--left .balloon__contents {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 1em;
+  background: #f0f;
+  border: 2px solid #00f;
+  color: #00f;
   border-radius: 1em;
 }
 /*# sourceMappingURL=style.css.map */
