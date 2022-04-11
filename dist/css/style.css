@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/* パーツ */
+/* 塗りつぶし吹き出し */
+.balloon {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #00f;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: .75em;
+}
+
+.balloon::before {
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  background: currentColor;
+  right: 0;
+  bottom: -.75em;
+  left: 0;
+  margin: auto;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.balloon__contents {
+  padding: 1em;
+  background: #00f;
+  color: #fff;
+  border-radius: 1em;
+}
+/*# sourceMappingURL=style.css.map */
